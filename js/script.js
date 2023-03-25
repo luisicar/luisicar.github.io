@@ -42,11 +42,15 @@ var habilidades = [{
 ];
 
 function obtenerPersona() {
+    /* no posicionamos en el primer tab*/
     irAlPrimerTab();
+    /*Obtenemos la persnona de la API*/
     fetch('https://randomuser.me/api/')
         .then(response => response.json())
         .then(data => cargarDatos(data));
+    /*Cargamos  las experiencia*/
     cargarExperiencia();
+    /*Cargamos  las habilidades*/
     cargarHabilidades();
 }
 
@@ -66,26 +70,34 @@ function cargarDatos(data) {
 }
 
 function cargarExperiencia() {
-
+    /*Obtenemos de forma aleatoria dos expericencias*/
     let lista = randomExperiencia(experiencia, 2);
+
+    /*Ordenamos las exp obtenidas*/
     lista.sort((a, b) => a.orden - b.orden);
+
     let html = "";
+    /*Creamos el html para cargar el div con las exp. */
     lista.forEach(element => {
         html += `<li><h3> ${element.cargo}</h3><span>${element.periodo}</span><p>${element.descripcion}</p></li>`;
     });
+    /*Seteamos el container de exp */
     document.getElementById("container-exp").innerHTML = html;
 }
 
 function cargarHabilidades() {
-
     let html = "";
+    /*Recorremos el array de habimidades y creamos el html para el container*/
     habilidades.forEach(element => {
+
+        /*De forma aleatoria obtemos el procetanje para cada habilidad*/
         let porcentaje = Math.floor(Math.random() * 101);
         html += ` <small>${element.habilidad}</small>
         <div class="progress mb-3" style="height: 5px">
             <div class="progress-bar bg-primary" role="progressbar" style="width: ${porcentaje}%" aria-valuenow="${porcentaje}" aria-valuemin="0" aria-valuemax="100"></div>
         </div>`;
     });
+    /*Seteamos el container de Habilidades*/
     document.getElementById("container-hab").innerHTML = html;
 }
 
