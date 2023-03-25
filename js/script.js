@@ -24,6 +24,22 @@ var experiencia = [{
         orden: 4
     }
 ]
+var habilidades = [{
+        habilidad: "Web Design"
+    },
+    {
+        habilidad: "Comunicacion"
+    },
+    {
+        habilidad: "Trabajo en Equipo"
+    },
+    {
+        habilidad: "Liderazgo"
+    },
+    {
+        habilidad: "Backend API"
+    },
+];
 
 function obtenerPersona() {
     irAlPrimerTab();
@@ -31,6 +47,7 @@ function obtenerPersona() {
         .then(response => response.json())
         .then(data => cargarDatos(data));
     cargarExperiencia();
+    cargarHabilidades();
 }
 
 function irAlPrimerTab() {
@@ -39,7 +56,6 @@ function irAlPrimerTab() {
 }
 
 function cargarDatos(data) {
-    console.log(data);
     document.getElementById("user_img").src = data.results[0].picture.large;
     document.getElementById("user_img").alt = data.results[0].name.first + "," + data.results[0].name.last;
     document.getElementById("user_name").innerHTML = data.results[0].name.first + "," + data.results[0].name.last;
@@ -53,11 +69,24 @@ function cargarExperiencia() {
 
     let lista = randomExperiencia(experiencia, 2);
     lista.sort((a, b) => a.orden - b.orden);
-    html = "";
+    let html = "";
     lista.forEach(element => {
         html += `<li><h3> ${element.cargo}</h3><span>${element.periodo}</span><p>${element.descripcion}</p></li>`;
     });
     document.getElementById("container-exp").innerHTML = html;
+}
+
+function cargarHabilidades() {
+
+    let html = "";
+    habilidades.forEach(element => {
+        let porcentaje = Math.floor(Math.random() * 101);
+        html += ` <small>${element.habilidad}</small>
+        <div class="progress mb-3" style="height: 5px">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: ${porcentaje}%" aria-valuenow="${porcentaje}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>`;
+    });
+    document.getElementById("container-hab").innerHTML = html;
 }
 
 function randomExperiencia(array, quantity) {
