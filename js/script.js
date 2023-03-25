@@ -1,22 +1,27 @@
 var experiencia = [{
         cargo: "Secretaria docente",
-        periodo: "01 Enero 2020 al presente",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula...."
+        periodo: "01 Enero 2020 - al presente",
+        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....",
+        orden: 1
     },
     {
         cargo: "Administrativa",
-        periodo: "01 Enero 2010 - 01 Enero 2020",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula...."
+        periodo: "01 Enero 2019 - 01 Enero 2020",
+        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....",
+        orden: 2
     },
     {
         cargo: "Cajera",
-        periodo: "01 Enero 2020 al presente",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula...."
+        periodo: "01 Enero 2018 al 01 Enero 2019",
+        inicio: "01/01/2020",
+        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....",
+        orden: 3
     },
     {
         cargo: "Asistente gerencial",
-        periodo: "01 Enero 2020 al presente",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula...."
+        periodo: "01 Enero 2017 al 01 Enero 2018",
+        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....",
+        orden: 4
     }
 ]
 
@@ -47,7 +52,7 @@ function cargarDatos(data) {
 function cargarExperiencia() {
 
     let lista = randomExperiencia(experiencia, 2);
-    console.log(lista);
+    lista.sort((a, b) => a.orden - b.orden);
     html = "";
     lista.forEach(element => {
         html += `<li><h3> ${element.cargo}</h3><span>${element.periodo}</span><p>${element.descripcion}</p></li>`;
